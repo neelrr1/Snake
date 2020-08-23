@@ -91,15 +91,19 @@ function draw() {
 
 function keyPressed() {
     if (keyCode === LEFT_ARROW) {
+        if (velocity.x == speed) return;
         velocity.x = -speed
         velocity.y = 0
     } else if (keyCode === RIGHT_ARROW) {
+        if (velocity.x == -speed) return;
         velocity.x = speed
         velocity.y = 0
     } else if (keyCode === UP_ARROW) {
+        if (velocity.y == speed) return;
         velocity.x = 0
         velocity.y = -speed
     } else if (keyCode === DOWN_ARROW) {
+        if (velocity.y == -speed) return;
         velocity.x = 0
         velocity.y = speed
     }
