@@ -1,7 +1,6 @@
 const segmentSize = 20 // Make sure divisible by game width/height to avoid wonky things
 const gameWidth = 600
 const gameHeight = 400
-const initialSize = 5
 const speed = 1
 const initialLength = 5
 let pos;
@@ -15,6 +14,10 @@ const easy = 7
 const medium = 15
 const hard = 30
 
+let scoreDom;
+let score;
+let highScore;
+
 function setup() {
     createCanvas(gameWidth, gameHeight);
     frameRate(medium)
@@ -25,6 +28,10 @@ function setup() {
 
     applePos = createVector(0, 0)
     updateApplePos()
+
+    scoreDom = document.getElementById('score')
+    highScore = 0
+    scoreDom.innerText = 'Score: ' + (length - initialLength) + ' High Score: ' + highScore
 
     for (i = 0; i < length; i++) {
         trail[i] = createVector(pos.x, pos.y)
@@ -69,6 +76,7 @@ function draw() {
     // Did we get the apple?
     if (pos.x == applePos.x && pos.y == applePos.y) {
         length++
+        highScore = Math.max(highScore, length - initialLength)
         updateApplePos()
     }
 
@@ -78,6 +86,7 @@ function draw() {
     while(trail.length > length) {
         trail.shift()
     }
+    scoreDom.innerText = 'Score: ' + (length - initialLength) + ' High Score: ' + highScore
 }
 
 function keyPressed() {
