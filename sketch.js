@@ -120,6 +120,9 @@ function updateApplePos() {
     console.log(applePos.y)
 }
 
+function agent() {
+
+}
 
 // Functions to control the snake, plumbing for Snake agent
 function goLeft() {
