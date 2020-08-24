@@ -91,21 +91,13 @@ function draw() {
 
 function keyPressed() {
     if (keyCode === LEFT_ARROW) {
-        if (velocity.x == speed) return;
-        velocity.x = -speed
-        velocity.y = 0
+        goLeft()
     } else if (keyCode === RIGHT_ARROW) {
-        if (velocity.x == -speed) return;
-        velocity.x = speed
-        velocity.y = 0
+        goRight()
     } else if (keyCode === UP_ARROW) {
-        if (velocity.y == speed) return;
-        velocity.x = 0
-        velocity.y = -speed
+        goUp()
     } else if (keyCode === DOWN_ARROW) {
-        if (velocity.y == -speed) return;
-        velocity.x = 0
-        velocity.y = speed
+        goDown()
     }
 
     if (key === '1') {
@@ -126,4 +118,34 @@ function updateApplePos() {
     applePos.y = segmentSize * Math.floor(segmentsTall *  Math.random())
     console.log(applePos.x)
     console.log(applePos.y)
+}
+
+
+// Functions to control the snake, plumbing for Snake agent
+function goLeft() {
+    if (velocity.x == speed) return false;
+    velocity.x = -speed
+    velocity.y = 0
+    return true
+}
+
+function goRight() {
+    if (velocity.x == -speed) return;
+    velocity.x = speed
+    velocity.y = 0
+    return true
+}
+
+function goUp() {
+    if (velocity.y == speed) return false;
+    velocity.x = 0
+    velocity.y = -speed
+    return true
+}
+
+function goDown() {
+    if (velocity.y == -speed) return false;
+    velocity.x = 0
+    velocity.y = speed
+    return true
 }
